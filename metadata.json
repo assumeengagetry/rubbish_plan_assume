@@ -1,0 +1,5 @@
+{
+  "name": "University Schedule",
+  "description": "A responsive, mobile-first course timetable application designed to visualize university schedules parsed from JSON data.",
+  "requestFramePermissions": []
+}

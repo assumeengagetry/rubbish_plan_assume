@@ -1,0 +1,7 @@
+{
+  "permissions": [
+    "core:default",
+    "shell:allow-open"
+  ],
+  "platforms": ["macOS", "windows", "linux", "android", "iOS"]
+}

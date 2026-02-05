@@ -1,11 +1,12 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
+import { ViewMode } from '../types';
 
 interface WeekSelectorProps {
     currentWeek: number;
     setCurrentWeek: (week: number) => void;
-    viewMode: 'day' | 'week';
-    setViewMode: (mode: 'day' | 'week') => void;
+    viewMode: ViewMode;
+    setViewMode: (mode: ViewMode) => void;
 }
 
 export const WeekSelector: React.FC<WeekSelectorProps> = ({ currentWeek, setCurrentWeek, viewMode, setViewMode }) => {
@@ -28,14 +29,14 @@ export const WeekSelector: React.FC<WeekSelectorProps> = ({ currentWeek, setCurr
                 
                 <div className="flex bg-blue-700 rounded-lg p-0.5">
                     <button 
-                        onClick={() => setViewMode('week')}
-                        className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${viewMode === 'week' ? 'bg-white text-blue-700 shadow-sm' : 'text-blue-100'}`}
+                        onClick={() => setViewMode(ViewMode.Week)}
+                        className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${viewMode === ViewMode.Week ? 'bg-white text-blue-700 shadow-sm' : 'text-blue-100'}`}
                     >
                         Week
                     </button>
                     <button 
-                        onClick={() => setViewMode('day')}
-                        className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${viewMode === 'day' ? 'bg-white text-blue-700 shadow-sm' : 'text-blue-100'}`}
+                        onClick={() => setViewMode(ViewMode.Day)}
+                        className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${viewMode === ViewMode.Day ? 'bg-white text-blue-700 shadow-sm' : 'text-blue-100'}`}
                     >
                         Day
                     </button>

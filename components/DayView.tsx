@@ -25,7 +25,7 @@ export const DayView: React.FC<DayViewProps> = ({ sessions, day }) => {
     }
 
     return (
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-24 bg-gray-50">
+        <div className="h-full w-full overflow-y-auto p-4 space-y-4 pb-24 bg-gray-50">
             {sortedSessions.map((session, idx) => {
                 const startTime = SESSION_TIMES[session.start] || "00:00";
                 // Estimate end time by adding duration (assuming 45 min slots + 10 min break, roughly)

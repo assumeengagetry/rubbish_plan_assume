@@ -12,7 +12,7 @@ export const WeekView: React.FC<WeekViewProps> = ({ sessions }) => {
     const headerHeight = 40;
 
     return (
-        <div className="flex-1 overflow-auto bg-white relative">
+        <div className="h-full w-full overflow-auto bg-white relative">
             <div className="min-w-[120%] pb-20"> {/* Ensure horizontal scroll for small screens */}
                 
                 {/* Header Row */}

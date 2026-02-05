@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ViewMode } from './types';
 import { getSessionsForWeek, getSessionsForDay } from './utils';
 import { WeekSelector } from './components/WeekSelector';

@@ -7,6 +7,7 @@ import { ProcessedSession } from "./types";
  * index 0 = Week 1.
  */
 export const isClassActive = (weekBinary: string, currentWeek: number): boolean => {
+    if (!weekBinary) return false;
     const index = currentWeek - 1;
     if (index < 0 || index >= weekBinary.length) return false;
     return weekBinary.charAt(index) === '1';
@@ -16,6 +17,7 @@ export const isClassActive = (weekBinary: string, currentWeek: number): boolean 
  * Deterministically assigns a color to a course based on its name/ID.
  */
 export const getCourseColor = (courseName: string): string => {
+    if (!courseName) return COURSE_COLORS[0];
     let hash = 0;
     for (let i = 0; i < courseName.length; i++) {
         hash = courseName.charCodeAt(i) + ((hash << 5) - hash);
@@ -29,21 +31,29 @@ export const getCourseColor = (courseName: string): string => {
  */
 export const getSessionsForWeek = (weekNumber: number): ProcessedSession[] => {
     const sessions: ProcessedSession[] = [];
+    
+    // Safety check for empty or malformed data
+    if (!RAW_SCHEDULE_DATA?.dateList?.[0]?.selectCourseList) {
+        return sessions;
+    }
+
     const courseList = RAW_SCHEDULE_DATA.dateList[0].selectCourseList;
 
     courseList.forEach(course => {
+        if (!course.timeAndPlaceList) return;
+
         course.timeAndPlaceList.forEach(tp => {
             if (isClassActive(tp.classWeek, weekNumber)) {
                 sessions.push({
-                    day: tp.classDay,
-                    start: tp.classSessions,
-                    duration: tp.continuingSession,
-                    courseName: tp.coureName,
-                    classroom: tp.classroomName,
-                    teacher: course.attendClassTeacher.replace('*', '').trim(),
-                    weeks: tp.weekDescription,
-                    color: getCourseColor(course.courseName),
-                    weekDesc: tp.weekDescription,
+                    day: tp.classDay || 1,
+                    start: tp.classSessions || 1,
+                    duration: tp.continuingSession || 2,
+                    courseName: tp.coureName || 'Unknown Course',
+                    classroom: tp.classroomName || 'Unknown Room',
+                    teacher: (course.attendClassTeacher || '').replace('*', '').trim(),
+                    weeks: tp.weekDescription || '',
+                    color: getCourseColor(course.courseName || tp.coureName),
+                    weekDesc: tp.weekDescription || '',
                     raw: tp,
                     courseRaw: course
                 });

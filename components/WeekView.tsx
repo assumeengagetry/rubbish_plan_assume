@@ -62,7 +62,7 @@ export const WeekView: React.FC<WeekViewProps> = ({ sessions }) => {
                             return (
                                 <div
                                     key={`${session.courseName}-${session.day}-${session.start}-${idx}`}
-                                    className={`absolute px-1 py-1 overflow-hidden transition-all hover:brightness-95 hover:z-20`}
+                                    className={`absolute px-0.5 py-0.5 overflow-hidden transition-all hover:brightness-95 hover:z-20`}
                                     style={{
                                         top: `${top}px`,
                                         height: `${height}px`,
@@ -70,11 +70,11 @@ export const WeekView: React.FC<WeekViewProps> = ({ sessions }) => {
                                         width: `${widthPercent}%`,
                                     }}
                                 >
-                                    <div className={`w-full h-full rounded-md p-1.5 shadow-sm border text-[10px] leading-tight flex flex-col justify-between ${session.color}`}>
-                                        <div className="font-bold line-clamp-2">{session.courseName}</div>
-                                        <div className="opacity-90 space-y-0.5">
+                                    <div className={`w-full h-full rounded-md p-1 shadow-sm border text-[10px] leading-tight flex flex-col ${session.color}`}>
+                                        <div className="font-bold line-clamp-3 mb-auto break-words">{session.courseName}</div>
+                                        <div className="opacity-90 mt-1">
                                             <div className="flex items-center gap-0.5">
-                                                <span className="truncate">@{session.classroom}</span>
+                                                <span className="truncate scale-90 origin-left">@{session.classroom}</span>
                                             </div>
                                         </div>
                                     </div>
